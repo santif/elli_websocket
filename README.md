@@ -6,8 +6,7 @@ elli_websocket is a websocket handler for Elli: https://github.com/knutin/elli
 ## Installation
 
 You can add elli_websocket to your application by adding it as a dependency to your elli 
-application. At the moment elli_websocket is dependant on a handover and ssl feature and
-needs a specific elli branch.
+application.
 
 ```erlang
 % rebar.config
