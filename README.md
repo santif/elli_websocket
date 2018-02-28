@@ -1,33 +1,23 @@
-Elli Websocket Handler
-======================
+# elli_websocket
 
-elli_websocket is a websocket handler for Elli: https://github.com/knutin/elli
+*A WebSocket handler for [Elli](https://github.com/elli-lib/elli)*
+
 
 ## Installation
 
-You can add elli_websocket to your application by adding it as a dependency to your elli 
+You can add `elli_websocket` to your application by adding it as a dependency to your elli 
 application.
 
 ```erlang
-% rebar.config
 {deps, [
-    {elli, ".*", {git, "git://github.com/mmzeeman/elli.git", {branch, "ssl+handover"}}},
-    {elli_websocket, ".*", {git, "git://github.com/mmzeeman/elli_websocket.git", {branch, "master"}}},
-    % ...
+    {elli_websocket, ".*", {git, "git://github.com/elli-lib/elli_websocket.git", {branch, "master"}}}
 ]}.
 ```
 
-Afterwards you can run:
 
-```sh
-$ ./rebar get-deps
-$ ./rebar compile
-```
+## Callback Module
 
-
-## Callback module
-
-See elli_example_websocket.erl for details.
+See [elli_example_websocket.erl](./src/elli_example_websocket.erl) for details.
 
 ```erlang
 -module(elli_echo_websocket_handler).
@@ -49,15 +39,14 @@ websocket_info(Req, Message, State) ->
 
 websocket_handle_event(Name, EventArgs, State) ->
     ok.
-
 ```
 
-## Upgrading to Websocket Connection
 
-This is an example of how you can upgrade to a websocket connection.
+## Upgrading to WebSocket Connection
+
+This is an example of how you can upgrade to a WebSocket connection.
 
 ```erlang
-
 -module(elli_echo_websocket).
 
 -export([init/2, handle/2, handle_event/3]).
@@ -109,7 +98,3 @@ handle('GET', [<<"echo_websocket">>], _Req, _Args) ->
 handle(_,_,_,_) ->
     ignore.
 ```
-
-
-
-
