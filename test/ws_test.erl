@@ -1,15 +1,13 @@
-
-
 -module(ws_test).
 
 -export([start/0]).
 
 
-start() -> 
+start() ->
     _ = application:start(crypto),
     _ = application:start(public_key),
     _ = application:start(ssl),
-    
+
     WsConfig = [{handler, elli_example_websocket}],
 
     Config = [{mods, [{elli_example_websocket, WsConfig}]}],
