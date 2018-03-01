@@ -23,19 +23,35 @@
 
 -include_lib("elli_websocket.hrl").
 
+
 -callback websocket_init(Req :: elli:req(), Args :: any()) ->
-    {ok, Headers :: elli:headers(), State :: any()} |
-    {ok, Headers :: elli:headers(), hibernate, State :: any()} |
-    {ok, Headers :: elli:headers(), Timeout :: non_neg_integer(), State :: any()} |
-    {ok, Headers :: elli:headers(), hibernate, Timeout :: non_neg_integer(), State :: any()} |
-    {shutdown, Headers :: elli:headers()}.
+    {ok, Headers, State} |
+    {ok, Headers, hibernate, State} |
+    {ok, Headers, Timeout, State} |
+    {ok, Headers, hibernate, Timeout, State} |
+    {shutdown, Headers} when
+      Headers :: elli:headers(),
+      State   :: any(),
+      Timeout :: non_neg_integer().
 
 
--callback websocket_handle(Req :: elli:req(), Message :: elli_websocket:message(), State :: any()) ->
-    {reply, ReplyMessage :: elli_websocket:message(), State}.
+-callback websocket_handle(Req, Message, State) ->
+    {reply, ReplyMessage, ReplyState} | {ok, State} when
+      Req          :: elli:req(),
+      Message      :: elli_websocket:message(),
+      State        :: any(),
+      ReplyState   :: any(),
+      ReplyMessage :: elli_websocket:message().
 
--callback websocket_info(Req :: elli:req(), Message :: any(), State :: any()) ->
-    {ok, ReplyState :: any()}.
 
--callback websocket_handle_event(Event :: elli_websocket:event(), Args :: list(), State :: any()) ->
-    ok.
+-callback websocket_info(Req, Message, State) -> {ok, ReplyState} when
+      Req        :: elli:req(),
+      Message    :: any(),
+      State      :: any(),
+      ReplyState :: any().
+
+
+-callback websocket_handle_event(Event, Args, State) -> ok when
+      Event :: elli_websocket:event(),
+      Args  :: list(),
+      State :: any().
