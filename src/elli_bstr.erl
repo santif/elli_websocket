@@ -98,6 +98,7 @@ lchr(Chr) -> Chr.
 
 
 %% @doc Remove leading whitespace from Bin
+-spec trim_left(binary()) -> binary().
 trim_left(<<C, Rest/binary>>) when ?IS_WS(C) ->
     trim_left(Rest);
 trim_left(Bin) ->
@@ -105,6 +106,7 @@ trim_left(Bin) ->
 
 
 %% @doc Remove trailing whitespace from Bin
+-spec trim_right(binary()) -> binary().
 trim_right(<<>>) -> <<>>;
 trim_right(Bin) ->
     case binary:last(Bin) of
@@ -116,6 +118,7 @@ trim_right(Bin) ->
 
 
 %% @doc Remove leading and trailing whitespace.
+-spec trim(binary()) -> binary().
 trim(Bin) ->
     trim_left(trim_right(Bin)).
 
@@ -124,6 +127,7 @@ trim(Bin) ->
 %% Helpers
 %%
 
+-spec equal_ci(binary(), binary()) -> boolean().
 equal_ci(<<>>, <<>>) ->
     true;
 equal_ci(<<C, Rest1/binary>>, <<C, Rest2/binary>>) ->
