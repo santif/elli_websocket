@@ -1,0 +1,5 @@
+%% encoding: UTF-8
+{application,elli_websocket}.
+{modules,[elli_bstr,elli_example_websocket,elli_proplists,elli_websocket,
+          elli_websocket_handler,elli_ws_http,elli_ws_protocol,
+          elli_ws_request_adapter]}.
