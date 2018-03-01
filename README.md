@@ -1,12 +1,13 @@
 # elli_websocket
 
-*A WebSocket handler for [Elli](https://github.com/elli-lib/elli)*
+*A WebSocket handler for [elli][]*
 
 [![Erlang][erlang badge]][erlang downloads]
 [![Travis CI][travis badge]][travis builds]
 [![Coverage Status][coveralls badge]][coveralls link]
 [![Apache License][license badge]](LICENSE)
 
+[elli]: https://github.com/elli-lib/elli
 [erlang badge]: https://img.shields.io/badge/erlang-%E2%89%A518.0-red.svg
 [erlang downloads]: http://www.erlang.org/downloads
 [travis builds]: https://travis-ci.org/elli-lib/elli_websocket
@@ -18,27 +19,36 @@
 
 ## Installation
 
-You can add `elli_websocket` to your application by adding it as a dependency to your elli
-application.
+You can add `elli_websocket` to your application by adding it as a dependency to
+your [elli][] application.
 
 ```erlang
 {deps, [
-    {elli_websocket, ".*", {git, "git://github.com/elli-lib/elli_websocket.git", {branch, "master"}}}
+  {elli, "2.0.1"},
+  {elli_websocket, "0.1.0"}
 ]}.
 ```
 
 
-## Callback Module
+## Examples
+
+### Callback Module
 
 See [elli_example_websocket.erl](./src/elli_example_websocket.erl) for details.
 
 ```erlang
 -module(elli_echo_websocket_handler).
--export([websocket_init/1, websocket_handle/3, websocket_info/3, websocket_handle_event/3]).
+
+-export([websocket_init/1,
+         websocket_handle/3,
+         websocket_info/3,
+         websocket_handle_event/3]).
+
 
 websocket_init(Req, Opts) ->
     State = undefined,
     {ok, [], State}.
+
 
 websocket_handle(_Req, {text, Data}, State) ->
     {reply, {text, Data}, State};
@@ -47,17 +57,17 @@ websocket_handle(_Req, {binary, Data}, State) ->
 websocket_handle(_Req, _Frame, State) ->
     {ok, State}.
 
+
 websocket_info(Req, Message, State) ->
     {ok, State}.
+
 
 websocket_handle_event(Name, EventArgs, State) ->
     ok.
 ```
 
 
-## Upgrading to WebSocket Connection
-
-This is an example of how you can upgrade to a WebSocket connection.
+### Upgrading to a WebSocket Connection
 
 ```erlang
 -module(elli_echo_websocket).
@@ -68,6 +78,7 @@ This is an example of how you can upgrade to a WebSocket connection.
 
 -behaviour(elli_handler).
 
+
 init(Req, Args) ->
     Method = case elli_request:get_header(<<"Upgrade">>, Req) of
         <<"websocket">> ->
@@ -75,6 +86,7 @@ init(Req, Args) ->
         _ ->
             ignore
     end.
+
 
 handle(Req, Args) ->
     Method = case elli_request:get_header(<<"Upgrade">>, Req) of
@@ -85,8 +97,10 @@ handle(Req, Args) ->
     end,
     handle(Method, elli_request:path(Req), Req, Args).
 
+
 handle_event(_Event, _Data, _Args) ->
     ok.
+
 
 %%
 %% Helpers
@@ -97,17 +111,16 @@ init_ws([<<"echo_websocket">>], _Req, _Args) ->
 init_ws(_, _, _) ->
     ignore.
 
+
 handle('websocket', [<<"echo_websocket">>], Req, Args) ->
     %% Upgrade to a websocket connection.
     elli_websocket:upgrade(Req, Args),
 
     %% websocket is closed.
     {close, <<>>};
-
 handle('GET', [<<"echo_websocket">>], _Req, _Args) ->
     %% We got a normal request, request was not upgraded.
     {200, [], <<"Use an upgrade request">>};
-
 handle(_,_,_,_) ->
     ignore.
 ```
