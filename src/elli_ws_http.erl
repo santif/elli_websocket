@@ -1,6 +1,4 @@
-%%
-%% Some simple parsing routines.
-%%
+%%% @doc Some simple parsing routines.
 
 -module(elli_ws_http).
 

@@ -1,5 +1,6 @@
 %% Copyright (c) 2011-2013, Loïc Hoguin <essen@ninenines.eu>
 %% Copyright (c) 2013, Maas-Maarten Zeeman <mmzeeman@xs4all.nl>
+%% Copyright (c) 2018, elli-lib team
 %%
 %% Permission to use, copy, modify, and/or distribute this software for any
 %% purpose with or without fee is hereby granted, provided that the above
@@ -14,6 +15,7 @@
 %% OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 %% @doc Websocket protocol implementation.
+%% @end
 %%
 %% Cowboy supports versions 7 through 17 of the Websocket drafts.
 %% It also supports RFC6455, the proposed standard for Websocket.

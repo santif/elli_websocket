@@ -1,9 +1,11 @@
 %% @author Maas-Maarten Zeeman <mmzeeman@xs4all.nl>
-%% @copyright 2013 Maas-Maarten Zeeman
+%% @copyright 2013, Maas-Maarten Zeeman; 2018, elli-lib team
 %%
 %% @doc Binary String Helper Functions
+%% @end
 %%
 %% Copyright 2013 Maas-Maarten Zeeman
+%% Copyright 2018 elli-lib team
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.

@@ -1,8 +1,3 @@
-%%
-%%
-%%
-
-
 -module(elli_example_websocket).
 -author("Maas-Maarten Zeeman <mmzeeman@xs4all.nl>").
 

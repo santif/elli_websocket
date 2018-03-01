@@ -1,16 +1,18 @@
 %% @author Maas-Maarten Zeeman <mmzeeman@xs4all.nl>
-%% @copyright 2012, 2013 Maas-Maarten Zeeman
+%% @copyright 2012-2013, Maas-Maarten Zeeman; 2018, elli-lib team
 %%
-%% @doc Elli Websocket Handler 
+%% @doc Elli Websocket Handler
+%% @end
 %%
-%% Copyright 2013 Maas-Maarten Zeeman
+%% Copyright 2012-2013, Maas-Maarten Zeeman
+%% Copyright 2018,      elli-lib team
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
 %% You may obtain a copy of the License at
-%% 
+%%
 %%     http://www.apache.org/licenses/LICENSE-2.0
-%% 
+%%
 %% Unless required by applicable law or agreed to in writing, software
 %% distributed under the License is distributed on an "AS IS" BASIS,
 %% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
