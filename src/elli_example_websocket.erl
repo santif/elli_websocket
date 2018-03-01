@@ -3,18 +3,18 @@
 
 -export([init/2, handle/2, handle_event/3]).
 
-% Websocket callbacks.
+%% Websocket callbacks.
 -export([
-    websocket_init/2, 
-    websocket_info/3, 
-    websocket_handle/3,
+         websocket_init/2,
+         websocket_info/3,
+         websocket_handle/3,
 
-    websocket_handle_event/3
-]).
+         websocket_handle_event/3
+        ]).
 
 -include_lib("elli/include/elli.hrl").
 
-%% Serves as elli and websocket handler in one module. 
+%% Serves as elli and websocket handler in one module.
 
 -behaviour(elli_handler).
 -behaviour(elli_websocket_handler).
@@ -27,20 +27,20 @@
 %% that this request is upgraded.
 %%
 init(Req, Args) ->
-    Method = case elli_request:get_header(<<"Upgrade">>, Req) of
-        <<"websocket">> ->
-            init_ws(elli_request:path(Req), Req, Args);
-        _ ->
-            ignore
-    end.
+    _Method = case elli_request:get_header(<<"Upgrade">>, Req) of
+                  <<"websocket">> ->
+                      init_ws(elli_request:path(Req), Req, Args);
+                  _ ->
+                      ignore
+              end.
 
 handle(Req, Args) ->
     Method = case elli_request:get_header(<<"Upgrade">>, Req) of
-        <<"websocket">> -> 
-            websocket;
-        _ ->
-            elli_request:method(Req)        
-    end,
+                 <<"websocket">> ->
+                     websocket;
+                 _ ->
+                     elli_request:method(Req)
+             end,
     handle(Method, elli_request:path(Req), Req, Args).
 
 
@@ -60,7 +60,7 @@ handle('websocket', [<<"my">>, <<"websocket">>], Req, Args) ->
 handle('GET', [<<"my">>, <<"websocket">>], _Req, _Args) ->
     {200, [], <<"Use an upgrade request">>};
 
-handle(_,_,_,_) ->
+handle(_, _, _, _) ->
     ignore.
 
 handle_event(Name, EventArgs, ElliArgs) ->
@@ -72,24 +72,24 @@ handle_event(Name, EventArgs, ElliArgs) ->
 %%
 
 
-% @doc
-%
+%% @doc
+%%
 websocket_init(Req, Opts) ->
     io:fwrite(standard_error, "example_ws_init: ~p, ~p ~n", [Req, Opts]),
     State = undefined,
     {ok, [], State}.
 
-websocket_info(Req, Message, State) ->
+websocket_info(_Req, Message, State) ->
     io:fwrite(standard_error, "example_ws_info: ~p~n", [Message]),
     {ok, State}.
 
-websocket_handle(Req, Message, State) ->
+websocket_handle(_Req, Message, State) ->
     io:fwrite(standard_error, "example_ws_handle: ~p~n", [Message]),
-%%  default behaviour.
+    %%  default behaviour.
     {ok, State}.
 %%  comment the line above ({ok, State}.)
 %%  and uncomment the line below for an echo server.
-%   {reply, Message, State}.
+%%   {reply, Message, State}.
 
 
 %%
@@ -108,7 +108,3 @@ websocket_handle_event(websocket_close, [_, _Reason], _) -> ok;
 websocket_handle_event(websocket_throw, [_Request, _Exception, _Stacktrace], _) -> ok;
 websocket_handle_event(websocket_error, [_Request, _Exception, _Stacktrace], _) -> ok;
 websocket_handle_event(websocket_exit, [_Request, _Exception, _Stacktrace], _) -> ok.
-
-
-
-    
