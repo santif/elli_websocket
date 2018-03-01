@@ -2,19 +2,22 @@
 
 *A WebSocket handler for [elli][]*
 
+[![Hex.pm][hex badge]][hex package]
 [![Erlang][erlang badge]][erlang downloads]
 [![Travis CI][travis badge]][travis builds]
 [![Coverage Status][coveralls badge]][coveralls link]
 [![Apache License][license badge]](LICENSE)
 
 [elli]: https://github.com/elli-lib/elli
+[hex badge]: https://img.shields.io/hexpm/v/elli_websocket.svg
+[hex package]: https://hex.pm/packages/elli_websocket
 [erlang badge]: https://img.shields.io/badge/erlang-%E2%89%A518.0-red.svg
 [erlang downloads]: http://www.erlang.org/downloads
 [travis builds]: https://travis-ci.org/elli-lib/elli_websocket
 [travis badge]: https://travis-ci.org/elli-lib/elli_websocket.svg
 [coveralls badge]: https://coveralls.io/repos/github/elli-lib/elli_websocket/badge.svg?branch=develop
 [coveralls link]: https://coveralls.io/github/elli-lib/elli_websocket?branch=develop
-[license badge]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
+[license badge]: https://img.shields.io/hexpm/l/elli_websocket.svg
 
 
 ## Installation
