@@ -28,22 +28,3 @@ parse(<<C, Rest/bits>>, Acc, Token) when ?IS_TOKEN_SEP(C) ->
     parse_before(Rest, [Token|Acc]);
 parse(<<C, Rest/bits>>, Acc, Token) ->
     parse(Rest, Acc, <<Token/binary, (elli_bstr:lchr(C))>>).
-
-%%
-%% Tests
-%%
-
--ifdef(TEST).
-
--include_lib("eunit/include/eunit.hrl").
-
-tokens_test() ->
-    ?assertEqual([<<"test">>], tokens(<<"test">>)),
-    ?assertEqual([<<"test">>, <<"bla">>, <<"x">>], tokens(<<"test,     bla,x">>)),
-    ?assertEqual([<<"test">>, <<"een">>, <<"twee">>], tokens([<<"test">>, <<"een">>, <<"twee">>])),
-    ?assertEqual([<<"test">>, <<"een">>, <<"twee">>], tokens([<<"test,,,">>, <<",,,een,,,">>, <<"twee">>])),
-    ?assertEqual([], tokens(<<",,,">>)),
-    ok.
-
--endif.
-
