@@ -1,12 +1,14 @@
-{application, elli_websocket,
- [
-  {description, "Elli WebSocket Handler."},
-  {vsn, "1.0"},
-  {registered, []},
-  {applications, [
-                  kernel,
-                  stdlib,
-                  elli
-                 ]},
-  {env, []}
- ]}.
+{application, elli_websocket, [
+  {description,  "Elli WebSocket Handler."},
+  {vsn,          "0.1.0"},
+  {modules,      []},
+  {registered,   []},
+  {applications, [kernel, stdlib, elli]},
+  {env,          []},
+
+  {maintainers,  ["elli-lib team"]},
+  {licenses,     ["Apache"]},
+  {links, [
+    {"GitHub", "https://github.com/elli-lib/elli_websocket"}
+  ]}
+]}.
