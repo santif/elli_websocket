@@ -2,10 +2,23 @@
 
 *A WebSocket handler for [Elli](https://github.com/elli-lib/elli)*
 
+[![Erlang][erlang badge]][erlang downloads]
+[![Travis CI][travis badge]][travis builds]
+[![Coverage Status][coveralls badge]][coveralls link]
+[![Apache License][license badge]](LICENSE)
+
+[erlang badge]: https://img.shields.io/badge/erlang-%E2%89%A518.0-red.svg
+[erlang downloads]: http://www.erlang.org/downloads
+[travis builds]: https://travis-ci.org/elli-lib/elli_websocket
+[travis badge]: https://travis-ci.org/elli-lib/elli_websocket.svg
+[coveralls badge]: https://coveralls.io/repos/github/elli-lib/elli_websocket/badge.svg?branch=develop
+[coveralls link]: https://coveralls.io/github/elli-lib/elli_websocket?branch=develop
+[license badge]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
+
 
 ## Installation
 
-You can add `elli_websocket` to your application by adding it as a dependency to your elli 
+You can add `elli_websocket` to your application by adding it as a dependency to your elli
 application.
 
 ```erlang
@@ -65,13 +78,13 @@ init(Req, Args) ->
 
 handle(Req, Args) ->
     Method = case elli_request:get_header(<<"Upgrade">>, Req) of
-        <<"websocket">> -> 
+        <<"websocket">> ->
             websocket;
         _ ->
-            elli_request:method(Req)        
+            elli_request:method(Req)
     end,
     handle(Method, elli_request:path(Req), Req, Args).
-    
+
 handle_event(_Event, _Data, _Args) ->
     ok.
 
@@ -85,9 +98,9 @@ init_ws(_, _, _) ->
     ignore.
 
 handle('websocket', [<<"echo_websocket">>], Req, Args) ->
-    %% Upgrade to a websocket connection. 
+    %% Upgrade to a websocket connection.
     elli_websocket:upgrade(Req, Args),
-    
+
     %% websocket is closed.
     {close, <<>>};
 
